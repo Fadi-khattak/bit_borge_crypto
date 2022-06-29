@@ -1,6 +1,8 @@
 import 'package:birborge/controllers/bottom_nav_cubit/cubit/bottom_nav_controller_cubit.dart';
+import 'package:birborge/controllers/news_controller_cubit/cubit/news_controller_cubit.dart';
 import 'package:birborge/controllers/verification_controller_cubit/verification_controller_cubit.dart';
 import 'package:birborge/utils/app_colors.dart';
+import 'package:birborge/views/news_screen/news_screen.dart';
 import 'package:birborge/views/root_screen.dart';
 import 'package:birborge/views/verification.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
             providers: [
               BlocProvider(create: (context) => VerificationControllerCubit()),
               BlocProvider(create: ((context) => BottomNavControllerCubit())),
+              BlocProvider(create: (context) => NewsControllerCubit()),
             ],
             child: MaterialApp(
               theme: ThemeData(
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
                       color: bgColor,
                       elevation: 0,
                       iconTheme: IconThemeData(color: Colors.white))),
-              home: const RootScreen(),
+              home: Verification(),
             ),
           );
         });

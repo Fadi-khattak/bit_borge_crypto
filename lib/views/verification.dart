@@ -1,5 +1,6 @@
 import 'package:birborge/utils/app_colors.dart';
 import 'package:birborge/utils/styling_text.dart';
+import 'package:birborge/views/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,17 +55,19 @@ class Verification extends StatelessWidget {
                       Expanded(
                           child: digitBox(
                               controller: c1,
-                              isCompleted:isCompleted,
+                              isCompleted: isCompleted,
                               oncomplete: (value) {
                                 if (value.toString().isNotEmpty) {
-                                  if(otp.length<4)
-                                    otp+=value;
-                                  context.read<VerificationControllerCubit>().checkCompletion(otp);
+                                  if (otp.length < 4) otp += value;
+                                  context
+                                      .read<VerificationControllerCubit>()
+                                      .checkCompletion(otp);
                                   FocusScope.of(context).nextFocus();
-                                }
-                                else if(value.toString().isEmpty){
-                                  otp=otp.substring(0,otp.length-2);
-                                  context.read<VerificationControllerCubit>().checkCompletion(otp);
+                                } else if (value.toString().isEmpty) {
+                                  otp = otp.substring(0, otp.length - 2);
+                                  context
+                                      .read<VerificationControllerCubit>()
+                                      .checkCompletion(otp);
                                 }
                               })),
                       SizedBox(
@@ -73,16 +76,19 @@ class Verification extends StatelessWidget {
                       Expanded(
                           child: digitBox(
                               controller: c2,
-                              isCompleted:isCompleted,
+                              isCompleted: isCompleted,
                               oncomplete: (value) {
                                 if (value.toString().isNotEmpty) {
-                                  if(otp.length<4)
-                                    otp+=value;
-                                  context.read<VerificationControllerCubit>().checkCompletion(otp);
+                                  if (otp.length < 4) otp += value;
+                                  context
+                                      .read<VerificationControllerCubit>()
+                                      .checkCompletion(otp);
                                   FocusScope.of(context).nextFocus();
-                                } else if (value.toString().isEmpty){
-                                  otp=otp.substring(0  ,otp.length-2);
-                                  context.read<VerificationControllerCubit>().checkCompletion(otp);
+                                } else if (value.toString().isEmpty) {
+                                  otp = otp.substring(0, otp.length - 2);
+                                  context
+                                      .read<VerificationControllerCubit>()
+                                      .checkCompletion(otp);
                                   FocusScope.of(context).previousFocus();
                                 }
                               })),
@@ -92,16 +98,19 @@ class Verification extends StatelessWidget {
                       Expanded(
                           child: digitBox(
                               controller: c3,
-                              isCompleted:isCompleted,
+                              isCompleted: isCompleted,
                               oncomplete: (value) {
                                 if (value.toString().isNotEmpty) {
-                                  if(otp.length<4)
-                                    otp+=value;
-                                  context.read<VerificationControllerCubit>().checkCompletion(otp);
+                                  if (otp.length < 4) otp += value;
+                                  context
+                                      .read<VerificationControllerCubit>()
+                                      .checkCompletion(otp);
                                   FocusScope.of(context).nextFocus();
-                                } else if (value.toString().isEmpty){
-                                  otp=otp.substring(0,otp.length-2);
-                                  context.read<VerificationControllerCubit>().checkCompletion(otp);
+                                } else if (value.toString().isEmpty) {
+                                  otp = otp.substring(0, otp.length - 2);
+                                  context
+                                      .read<VerificationControllerCubit>()
+                                      .checkCompletion(otp);
                                   FocusScope.of(context).previousFocus();
                                 }
                               })),
@@ -111,15 +120,18 @@ class Verification extends StatelessWidget {
                       Expanded(
                           child: digitBox(
                               controller: c4,
-                              isCompleted:isCompleted,
+                              isCompleted: isCompleted,
                               oncomplete: (value) {
                                 if (value.toString().isNotEmpty) {
-                                  if(otp.length<4)
-                                    otp+=value;
-                                  context.read<VerificationControllerCubit>().checkCompletion(otp);
+                                  if (otp.length < 4) otp += value;
+                                  context
+                                      .read<VerificationControllerCubit>()
+                                      .checkCompletion(otp);
                                 } else if (value.toString().isEmpty) {
-                                  otp=otp.substring(0,otp.length-2);
-                                  context.read<VerificationControllerCubit>().checkCompletion(otp);
+                                  otp = otp.substring(0, otp.length - 2);
+                                  context
+                                      .read<VerificationControllerCubit>()
+                                      .checkCompletion(otp);
                                   FocusScope.of(context).previousFocus();
                                 }
                               })),
@@ -133,7 +145,18 @@ class Verification extends StatelessWidget {
                 SizedBox(
                   height: 20.h,
                 ),
-                CustomButton(color: isCompleted ? mainYellow : Colors.grey,),
+                CustomButton(
+                  title: "continue",
+                  color: isCompleted ? mainYellow : Colors.grey,
+                  ontap: () {
+                    if (isCompleted) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RootScreen()));
+                    }
+                  },
+                ),
               ],
             );
           },
@@ -142,7 +165,8 @@ class Verification extends StatelessWidget {
     );
   }
 
-  Widget digitBox({required var controller, var oncomplete,required bool isCompleted}) {
+  Widget digitBox(
+      {required var controller, var oncomplete, required bool isCompleted}) {
     return SizedBox(
       width: 50.w,
       height: 50.h,
@@ -160,33 +184,37 @@ class Verification extends StatelessWidget {
           LengthLimitingTextInputFormatter(1),
           FilteringTextInputFormatter.digitsOnly
         ],
-        decoration:  InputDecoration(
+        decoration: InputDecoration(
             counter: Offstage(),
             border: const OutlineInputBorder(
                 borderSide: BorderSide(
               width: 0,
               style: BorderStyle.none,
             )),
-            enabledBorder:isCompleted? const OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 1,
-                color: Colors.green,
-              ),
-            ) : const OutlineInputBorder(
-                borderSide: BorderSide(
-                  width: 0,
-                  style: BorderStyle.none,
-                )),
-            focusedBorder: isCompleted? const OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 1,
-                color: Colors.green,
-              ),
-            ) : const OutlineInputBorder(
-                borderSide: BorderSide(
-                  width: 0,
-                  style: BorderStyle.none,
-                )),
+            enabledBorder: isCompleted
+                ? const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Colors.green,
+                    ),
+                  )
+                : const OutlineInputBorder(
+                    borderSide: BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  )),
+            focusedBorder: isCompleted
+                ? const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Colors.green,
+                    ),
+                  )
+                : const OutlineInputBorder(
+                    borderSide: BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  )),
             fillColor: Colors.white12,
             filled: true),
       ),
@@ -231,13 +259,12 @@ class Verification extends StatelessWidget {
     );
   }
 
-  Widget _verifiedMessage()
-  {
+  Widget _verifiedMessage() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Expanded(
-          flex: 2,
+            flex: 2,
             child: Align(
                 alignment: Alignment.centerRight,
                 child: Icon(
@@ -251,8 +278,11 @@ class Verification extends StatelessWidget {
                 child: Text(
                   "Code is Verified",
                   maxLines: 1,
-                  style:
-                  TextStyle(color: Colors.green, fontSize: 16.sp, fontWeight: FontWeight.bold,),
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
                 )))
       ],
     );

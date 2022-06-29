@@ -1,16 +1,25 @@
 import 'package:birborge/controllers/bottom_nav_cubit/cubit/bottom_nav_controller_cubit.dart';
 import 'package:birborge/utils/app_colors.dart';
 import 'package:birborge/utils/bitborg_icons_icons.dart';
+import 'package:birborge/views/news_screen/news_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RootScreen extends StatelessWidget {
-  const RootScreen({Key? key}) : super(key: key);
+  final pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: pageController,
+        children: [
+          Container(),
+          NewsScreen(),
+        ],
+      ),
       bottomNavigationBar: BlocBuilder<BottomNavControllerCubit, int>(
         builder: (context, currentPage) {
           return Container(
@@ -27,10 +36,12 @@ class RootScreen extends StatelessWidget {
                 bottomNavItem(BitborgIcons.homebtmn, "Home",
                     currentPage == 0 ? mainYellow : Colors.white54, () {
                   context.read<BottomNavControllerCubit>().selectIndex(0);
+                  pageController.jumpToPage(0);
                 }),
                 bottomNavItem(BitborgIcons.envelope, "News",
                     currentPage == 1 ? mainYellow : Colors.white54, () {
                   context.read<BottomNavControllerCubit>().selectIndex(1);
+                  pageController.jumpToPage(1);
                 }),
                 bottomNavItem(BitborgIcons.signals, "Signals",
                     currentPage == 2 ? mainYellow : Colors.white54, () {
