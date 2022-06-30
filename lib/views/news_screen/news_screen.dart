@@ -1,10 +1,13 @@
 import 'package:birborge/controllers/news_controller_cubit/cubit/news_controller_cubit.dart';
 import 'package:birborge/views/news_screen/news_tabs/all_news.dart';
+import 'package:birborge/views/news_screen/news_tabs/favorite_coins.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NewsScreen extends StatelessWidget {
+  var pageController = PageController();
+
   var catagories = [
     'All',
     'Favorite coins',
@@ -14,6 +17,7 @@ class NewsScreen extends StatelessWidget {
     'Negative',
     'Technical Analysis'
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +27,9 @@ class NewsScreen extends StatelessWidget {
       ),
       body: BlocBuilder<NewsControllerCubit, int>(
         builder: (context, selectedIndex) {
-          return ListView(
+          return Column(
             children: [
-              SizedBox(
-                height: 0.05.sh,
+              Expanded(
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: catagories.length,
@@ -41,6 +44,7 @@ class NewsScreen extends StatelessWidget {
                               context
                                   .read<NewsControllerCubit>()
                                   .updateSelectedIndex(index);
+                              pageController.jumpToPage(index);
                             },
                             child: Text(
                               catagories[index],
@@ -65,7 +69,12 @@ class NewsScreen extends StatelessWidget {
                   },
                 ),
               ),
-              AllNews(),
+              Expanded(
+                  flex: 10,
+                  child: PageView(
+                    controller: pageController,
+                    children: [AllNews(), FavoriteCoins()],
+                  ))
             ],
           );
         },
