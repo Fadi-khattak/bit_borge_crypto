@@ -81,6 +81,7 @@ class RootScreen extends StatelessWidget {
                             right: 0,
                             top: 9.5.sp,
                             child: InkWell(
+                              borderRadius: BorderRadius.circular(50.r),
                               onTap: () {
                                 context
                                     .read<SlideControllerCubit>()

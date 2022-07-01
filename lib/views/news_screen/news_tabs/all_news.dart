@@ -85,7 +85,7 @@ class AllNews extends StatelessWidget {
                                                 style: TextStyle(
                                                     color: index % 2 == 0
                                                         ? Colors.green
-                                                        : Colors.red),
+                                                        : Colors.red,fontSize: 16.sp),
                                               )),
                                             ),
                                           ),

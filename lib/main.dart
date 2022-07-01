@@ -4,16 +4,25 @@ import 'package:birborge/controllers/signal_controllers_cubit/signal_tabs_contro
 import 'package:birborge/controllers/slide_button_cubit/slide_controller_cubit.dart';
 import 'package:birborge/controllers/verification_controller_cubit/verification_controller_cubit.dart';
 import 'package:birborge/utils/app_colors.dart';
+import 'package:birborge/views/login_screen.dart';
 import 'package:birborge/views/news_screen/news_screen.dart';
 import 'package:birborge/views/news_screen/news_screen_details.dart';
 import 'package:birborge/views/news_screen/news_tabs/favorite_coins.dart';
+import 'package:birborge/views/notification_screen.dart';
 import 'package:birborge/views/root_screen.dart';
 import 'package:birborge/views/signal_screen.dart';
 import 'package:birborge/views/signals_details.dart';
+import 'package:birborge/views/splash_screen.dart';
+import 'package:birborge/views/subscription_screen.dart';
 import 'package:birborge/views/verification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'controllers/aknowlege_cubit/aknowlege_controller_cubit.dart';
+import 'controllers/country_selection_cubit.dart';
+import 'controllers/splash_cubit/splash_controller_cubit.dart';
+import 'controllers/terms_and_conditions_controller/terms_and_condition_cubit.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +45,11 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => NewsControllerCubit()),
               BlocProvider(create: (context) => SlideControllerCubit()),
               BlocProvider(create: (context) => SignalTabsControllerCubit()),
+              BlocProvider(create: (context) => SplashControllerCubit()),
+              BlocProvider(create: (create)=>CountrySelectionCubit()),
+              BlocProvider(create: (create)=>TermsAndConditionCubit()),
+              BlocProvider(create: (create)=>AknowlegeControllerCubit())
+              
             ],
             child: MaterialApp(
               theme: ThemeData(
@@ -44,7 +58,7 @@ class MyApp extends StatelessWidget {
                       color: bgColor,
                       elevation: 0,
                       iconTheme: IconThemeData(color: Colors.white))),
-              home: RootScreen(),
+              home: LoginScreen(),
             ),
           );
         });

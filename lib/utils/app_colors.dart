@@ -9,3 +9,5 @@ const bottomNavColor = Color(0xff13182B);
 const itemsFill=Color(0xff181B29);
 
 const lightGreen=Color(0xff8DC351);
+
+const bgLight=Color(0xff181B29);
