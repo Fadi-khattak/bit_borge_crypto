@@ -1,8 +1,11 @@
+import 'package:birborge/views/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/constants.dart';
+import '../custom_widgets/notification_widget.dart';
+import '../drawer/MyDrawer.dart';
 
 class NewsScreenDetails extends StatelessWidget {
   const NewsScreenDetails({Key? key}) : super(key: key);
@@ -11,8 +14,17 @@ class NewsScreenDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("News"),
-      ),body: ListView(
+        title: const Text("News"),
+        centerTitle: true,
+        actions: [
+        InkWell(onTap:(){
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context)=>NotificationScreen()));
+        },child: const NotificationWidget()),
+        SizedBox(width: 20.sp,)
+      ],
+      ),
+      body: ListView(
       children: [
         Container(
           height: 214.h,

@@ -1,9 +1,13 @@
 import 'package:birborge/controllers/news_controller_cubit/cubit/news_controller_cubit.dart';
+import 'package:birborge/views/custom_widgets/notification_widget.dart';
+import 'package:birborge/views/drawer/MyDrawer.dart';
 import 'package:birborge/views/news_screen/news_tabs/all_news.dart';
 import 'package:birborge/views/news_screen/news_tabs/favorite_coins.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../notification_screen.dart';
 
 class NewsScreen extends StatelessWidget {
   var pageController = PageController();
@@ -24,7 +28,15 @@ class NewsScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const Text("News"),
+        actions: [
+          InkWell(onTap:(){
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context)=>NotificationScreen()));
+          },child: const NotificationWidget()),
+          SizedBox(width: 20.sp,)
+        ],
       ),
+      drawer: MyDrawer(),
       body: BlocBuilder<NewsControllerCubit, int>(
         builder: (context, selectedIndex) {
           return Column(
@@ -73,6 +85,7 @@ class NewsScreen extends StatelessWidget {
                   flex: 10,
                   child: PageView(
                     controller: pageController,
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [AllNews(), FavoriteCoins()],
                   ))
             ],

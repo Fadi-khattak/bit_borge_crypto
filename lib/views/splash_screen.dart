@@ -1,6 +1,8 @@
 import 'dart:async';
 
 
+import 'package:birborge/views/login_screen.dart';
+import 'package:birborge/views/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,10 +21,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState()
   {
     super.initState();
-    Future.delayed(const Duration(milliseconds:50 ),(){
+    Future.delayed(const Duration(milliseconds:1000 ),(){
       context.read<SplashControllerCubit>().startSplash(true);
-      Timer(const Duration(seconds: 3), () {
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const LoginScreen()));
+      Timer(const Duration(seconds: 4), () {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> OnBoarding()));
       });
     });
   }

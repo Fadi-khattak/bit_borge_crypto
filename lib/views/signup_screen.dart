@@ -3,7 +3,9 @@ import 'package:birborge/controllers/aknowlege_cubit/aknowlege_controller_cubit.
 import 'package:birborge/controllers/country_selection_cubit.dart';
 import 'package:birborge/utils/app_colors.dart';
 import 'package:birborge/views/custom_widgets/custom_button.dart';
+import 'package:birborge/views/custom_widgets/my_passwordfield.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,12 +51,12 @@ class SignupScreen extends StatelessWidget {
               height: 10.sp,
             ),
             mTextFieldHeader(title: "Full name"),
-            MytextField(controller: null),
+            MytextField(prefixIcon: BitborgIcons.user,controller: null),
             SizedBox(
               height: 10.sp,
             ),
             mTextFieldHeader(title: "Email"),
-            MytextField(controller: null),
+            MytextField(prefixIcon: BitborgIcons.envelope,controller: null),
 
             SizedBox(
               height: 10.sp,
@@ -75,7 +77,7 @@ class SignupScreen extends StatelessWidget {
               height: 10.sp,
             ),
             mTextFieldHeader(title: "Password"),
-            MytextField(controller: null),
+            MyPasswordField(prefixIcon: BitborgIcons.lock, suffixIcon: CupertinoIcons.eye_slash, controller: null, showpass: false),
 
             BlocBuilder<TermsAndConditionCubit, bool>(
               builder: (context, isChecked) {
@@ -121,7 +123,6 @@ class SignupScreen extends StatelessWidget {
                   children: [
                     Checkbox(
                         checkColor: Colors.white,
-                        activeColor: mainYellow,
                         fillColor: MaterialStateProperty.all(mainYellow),
                         value: isChecked,
                         onChanged: (bool? val) {

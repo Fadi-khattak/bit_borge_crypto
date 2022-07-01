@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/bitborg_icons_icons.dart';
+import 'custom_widgets/notification_widget.dart';
 
 class SignalsDetails extends StatelessWidget {
 
@@ -16,6 +17,12 @@ class SignalsDetails extends StatelessWidget {
           "BTC USDT",
           style: TextStyle(fontSize: 25.sp),
         ),
+        actions: [
+          InkWell(onTap:(){
+
+          },child: const NotificationWidget()),
+          SizedBox(width: 20.sp,)
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.sp),

@@ -2,6 +2,7 @@ import 'package:birborge/controllers/bottom_nav_cubit/cubit/bottom_nav_controlle
 import 'package:birborge/utils/app_colors.dart';
 import 'package:birborge/utils/bitborg_icons_icons.dart';
 import 'package:birborge/utils/styling_text.dart';
+import 'package:birborge/views/custom_widgets/custom_button.dart';
 import 'package:birborge/views/news_screen/news_screen.dart';
 import 'package:birborge/views/signal_screen.dart';
 import 'package:flutter/material.dart';
@@ -49,30 +50,35 @@ class RootScreen extends StatelessWidget {
                           ),
                           color: mainYellow,
                         ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                child: InkWell(
-                              onTap: () {
-                                context
-                                    .read<SlideControllerCubit>()
-                                    .changeButtonState(true);
-                              },
-                              child: Icon(
-                                Icons.diamond_outlined,
-                                color: Colors.white,
-                                size: 30.sp,
-                              ),
-                            )),
-                            isExpanded
-                                ? Expanded(
-                                    flex: 2,
-                                    child: Text(
-                                      "Buy Premium",
-                                      style: subheadingStyle,
-                                    ))
-                                : const SizedBox(),
-                          ],
+                        child: InkWell(
+                          onTap: (){
+                            showPremiumDialog(context);
+                          },
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: InkWell(
+                                onTap: () {
+                                  context
+                                      .read<SlideControllerCubit>()
+                                      .changeButtonState(true);
+                                },
+                                child: Icon(
+                                  Icons.diamond_outlined,
+                                  color: Colors.white,
+                                  size: 30.sp,
+                                ),
+                              )),
+                              isExpanded
+                                  ? Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        "Buy Premium",
+                                        style: subheadingStyle,
+                                      ))
+                                  : const SizedBox(),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -145,6 +151,105 @@ class RootScreen extends StatelessWidget {
         },
       ),
     );
+  }
+  void showPremiumDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          contentPadding: EdgeInsets.all(5.sp),
+          backgroundColor: bgColor,
+          content: Container(
+            height: 325.h,
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        BitborgIcons.cross_circle,
+                        color: mainYellow,
+                        size: 30.sp,
+                      )),
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  left: 0,
+                  child: Container(
+                    height: 325.h,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Image.asset(
+                              "assets/images/time-quarterpast.png",
+                              width: 61.sp,
+                              height: 69.5.sp,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Align(
+                            child: Text(
+                              "Comming Soon",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 16.sp,fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.topCenter,
+                            child: Text(
+                            textAlign:TextAlign.center,
+                              "The premium subscription will be launch soon To get notified Please enter your email below.",
+                              style: TextStyle(
+                                  color: Colors.white54, fontSize: 13.sp),
+                            ),
+                          ),
+                        ),
+
+                        Expanded(
+                          child: SizedBox(
+                            width: 235.w,
+                            height: 44.h,
+                            child:  TextField(
+                              style: TextStyle(color: Colors.white,fontSize: 16.sp),
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: bgLight,
+                                hintText: "Email",
+                                hintStyle: TextStyle(color: Colors.grey,fontSize: 16.sp),
+                                border: InputBorder.none
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        Expanded(
+                          child:Align(
+                            child: SizedBox(
+                              width: 235.w,
+                              height: 48.h,
+                              child: CustomButton(title: "Let me know",color: mainYellow,ontap: (){},),
+                            ),
+                          ),
+                        )
+
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
 
   Widget bottomNavItem(var icon, String title, Color color, var ontap) {

@@ -1,5 +1,6 @@
 import 'package:birborge/controllers/bottom_nav_cubit/cubit/bottom_nav_controller_cubit.dart';
 import 'package:birborge/controllers/news_controller_cubit/cubit/news_controller_cubit.dart';
+import 'package:birborge/controllers/onboarding_controller_cubit.dart';
 import 'package:birborge/controllers/signal_controllers_cubit/signal_tabs_controller_cubit.dart';
 import 'package:birborge/controllers/slide_button_cubit/slide_controller_cubit.dart';
 import 'package:birborge/controllers/verification_controller_cubit/verification_controller_cubit.dart';
@@ -9,6 +10,9 @@ import 'package:birborge/views/news_screen/news_screen.dart';
 import 'package:birborge/views/news_screen/news_screen_details.dart';
 import 'package:birborge/views/news_screen/news_tabs/favorite_coins.dart';
 import 'package:birborge/views/notification_screen.dart';
+import 'package:birborge/views/onboarding_screen.dart';
+import 'package:birborge/views/profile_screen.dart';
+import 'package:birborge/views/reset_pass.dart';
 import 'package:birborge/views/root_screen.dart';
 import 'package:birborge/views/signal_screen.dart';
 import 'package:birborge/views/signals_details.dart';
@@ -48,17 +52,19 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => SplashControllerCubit()),
               BlocProvider(create: (create)=>CountrySelectionCubit()),
               BlocProvider(create: (create)=>TermsAndConditionCubit()),
-              BlocProvider(create: (create)=>AknowlegeControllerCubit())
+              BlocProvider(create: (create)=>AknowlegeControllerCubit()),
+              BlocProvider(create: (create)=>OnboardingControllerCubit())
               
             ],
             child: MaterialApp(
               theme: ThemeData(
                   scaffoldBackgroundColor: bgColor,
-                  appBarTheme: const AppBarTheme(
+                  appBarTheme:  AppBarTheme(
                       color: bgColor,
                       elevation: 0,
-                      iconTheme: IconThemeData(color: Colors.white))),
-              home: LoginScreen(),
+                      titleTextStyle: TextStyle(color: Colors.white,fontSize: 25.sp,fontWeight: FontWeight.bold),
+                      iconTheme:const IconThemeData(color: Colors.white))),
+              home: SplashScreen(),
             ),
           );
         });

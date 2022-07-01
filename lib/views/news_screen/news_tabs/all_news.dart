@@ -26,19 +26,19 @@ class AllNews extends StatelessWidget {
                 physics:const  AlwaysScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: (){
+                  return Container(
+                    width: 327.w,
+                    height: 154.h,
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.white12,
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
+                    child: InkWell(
+                      onTap: (){
 
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>NewsScreenDetails()));
-                    },
-                    child: Container(
-                      width: 327.w,
-                      height: 154.h,
-                      margin: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white12,
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
+                      },
                       child: Row(
                         children: [
                           Expanded(

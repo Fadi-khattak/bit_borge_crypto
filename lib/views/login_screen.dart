@@ -1,8 +1,12 @@
 
 import 'package:birborge/utils/app_colors.dart';
+import 'package:birborge/utils/bitborg_icons_icons.dart';
 import 'package:birborge/views/custom_widgets/custom_button.dart';
+import 'package:birborge/views/custom_widgets/my_passwordfield.dart';
+import 'package:birborge/views/reset_pass.dart';
 import 'package:birborge/views/root_screen.dart';
 import 'package:birborge/views/signup_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +26,7 @@ class LoginScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 10.sp),
+        padding:  EdgeInsets.symmetric(horizontal: 24.sp),
         child: ListView(
           children: [
             SizedBox(height: 60.sp,),
@@ -36,22 +40,28 @@ class LoginScreen extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20.sp,vertical: 10.sp),
-              child: const  Text("Please enter email & password to login",
+              child:  Text("Please enter email & password to login",
                   style: TextStyle(
                       color: Colors.white,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold,)),
             ),
             SizedBox(height: 0.03.sh,),
             mTextFieldHeader(title: "Email"),
-            MytextField(controller: null),
+            MytextField(prefixIcon: BitborgIcons.envelope,controller: null),
             SizedBox(height: 0.03.sh,),
             mTextFieldHeader(title: "Password"),
-            MytextField(controller: null),
+            MyPasswordField(prefixIcon: BitborgIcons.lock, suffixIcon: CupertinoIcons.eye_slash, controller: null, showpass: false),
              Align(
               alignment: Alignment.centerRight,
               child: InkWell(
-                onTap: (){},
-                  child:const Text("Forgot password ?",style: TextStyle(color: mainYellow,fontSize: 16),)
+                onTap: (){
+
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context)=>ResetPass()));
+
+                },
+                  child: Text("Forgot password ?",style: TextStyle(color: mainYellow,fontSize: 16.sp),)
               ),
             ),
             SizedBox(height: 50.sp,),
