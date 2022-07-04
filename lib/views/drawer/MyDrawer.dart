@@ -89,11 +89,11 @@ class MyDrawer extends StatelessWidget {
                                       Expanded(
                                         child: Icon(Icons.diamond_outlined,color: mainYellow,size: 30.sp,),
                                       ),
-                                      const Expanded(
+                                       Expanded(
                                         flex: 2,
                                         child: Align(
                                           alignment: Alignment.center,
-                                            child: Text("Premium",style: TextStyle(color: mainYellow),)),
+                                            child: Text("Premium",style: TextStyle(color: mainYellow,fontSize: 16.sp),)),
                                       )
                                     ],
                                   ),
@@ -157,11 +157,11 @@ class MyDrawer extends StatelessWidget {
                         Expanded(
                           child: Icon(Icons.diamond_outlined,color: Colors.black,size: 30.sp,),
                         ),
-                        const Expanded(
+                         Expanded(
                           flex: 3,
                           child: Align(
                               alignment: Alignment.center,
-                              child: Text("Upgrade plan",style: TextStyle(color: Colors.black),)),
+                              child: Text("Upgrade plan",style: TextStyle(color: Colors.black,fontSize:16.sp),)),
                         )
                       ],
                     ),

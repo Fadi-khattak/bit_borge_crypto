@@ -80,7 +80,12 @@ flutter:
     - family: BitborgIcons
       fonts:
         - asset: assets/icons/BitborgIcons.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weight: 700
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

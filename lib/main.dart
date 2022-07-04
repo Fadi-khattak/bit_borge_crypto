@@ -59,9 +59,11 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
               theme: ThemeData(
                   scaffoldBackgroundColor: bgColor,
+                  fontFamily: 'Montserrat',
                   appBarTheme:  AppBarTheme(
                       color: bgColor,
                       elevation: 0,
+                      toolbarHeight: 60.sp,
                       titleTextStyle: TextStyle(color: Colors.white,fontSize: 25.sp,fontWeight: FontWeight.bold),
                       iconTheme:const IconThemeData(color: Colors.white))),
               home: SplashScreen(),

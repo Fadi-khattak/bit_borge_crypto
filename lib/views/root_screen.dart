@@ -52,7 +52,9 @@ class RootScreen extends StatelessWidget {
                         ),
                         child: InkWell(
                           onTap: (){
-                            showPremiumDialog(context);
+                            if(isExpanded){
+                            showPremiumDialog(context);}
+
                           },
                           child: Row(
                             children: [
@@ -71,10 +73,10 @@ class RootScreen extends StatelessWidget {
                               )),
                               isExpanded
                                   ? Expanded(
-                                      flex: 2,
+                                      flex: 3,
                                       child: Text(
                                         "Buy Premium",
-                                        style: subheadingStyle,
+                                        style: TextStyle(color: Colors.white,fontSize: 14.sp),
                                       ))
                                   : const SizedBox(),
                             ],
@@ -94,8 +96,8 @@ class RootScreen extends StatelessWidget {
                                     .changeButtonState(false);
                               },
                               child: Container(
-                                height: 25.r,
-                                width: 25.r,
+                                height: 30.r,
+                                width: 30.r,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: bgColor,
@@ -116,7 +118,7 @@ class RootScreen extends StatelessWidget {
       bottomNavigationBar: BlocBuilder<BottomNavControllerCubit, int>(
         builder: (context, currentPage) {
           return Container(
-            height: 80.h,
+            height: 80.sp,
             padding: EdgeInsets.symmetric(vertical: 10.h),
             decoration: const BoxDecoration(
                 color: bottomNavColor,
@@ -262,6 +264,7 @@ class RootScreen extends StatelessWidget {
               child: Icon(
                 icon,
                 color: color,
+                size: 30.sp,
               ),
             ),
           ),
